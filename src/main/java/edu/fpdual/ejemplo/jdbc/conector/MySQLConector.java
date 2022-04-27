@@ -63,6 +63,22 @@ public class MySQLConector {
         MySQLConector connector = new MySQLConector();
         Connection connection = connector.getMySQLConnection();
         System.out.println(connection.getCatalog());
+        Statement st = connection.createStatement();
+        try {
+            ResultSet resultSet = st.executeQuery("Select * from city where CountryCode like 'ESP'");
+            while(resultSet.next()){
+                System.out.println(resultSet.getString(2));
+
+            }
+            st.close();
+            resultSet.close();
+            connection.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
     }
 
 }
